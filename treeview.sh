@@ -15,7 +15,7 @@ END_MARKER="<!-- Tree End -->"
 ROOT="$(cd -- "$ROOT" && pwd)"
 TREE_CONTENT=$(
     cd -- "$(dirname -- "$ROOT")"
-    tree -d -L 5 -I 'node_modules|.git|CMakeFiles|build|.pio' "$(basename -- "$ROOT")"
+    tree -d -L 7 -I 'node_modules|.git|CMakeFiles|build|.pio' "$(basename -- "$ROOT")"
 )
 
 # 2. Extract the README content outside the tree block

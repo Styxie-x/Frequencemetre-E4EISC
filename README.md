@@ -62,6 +62,13 @@ Le système est découpé en modules hiérarchiques interconnectés dans un fich
 Frequencemetre-E4ESIC-
 └── FrequenceMetre
     ├── FrequenceMetre.cache
+    │   ├── compile_simlib
+    │   │   ├── activehdl
+    │   │   ├── modelsim
+    │   │   ├── questa
+    │   │   ├── riviera
+    │   │   ├── vcs
+    │   │   └── xcelium
     │   └── wt
     ├── FrequenceMetre.hw
     ├── FrequenceMetre.ip_user_files
@@ -72,9 +79,10 @@ Frequencemetre-E4ESIC-
         └── sources_1
             ├── bd
             │   └── design_1
+            │       └── ui
             └── new
 
-14 directories
+22 directories
 ```
 <!-- Tree End -->
 
