@@ -69,10 +69,18 @@ Frequencemetre-E4ESIC-
     │   │   ├── riviera
     │   │   ├── vcs
     │   │   └── xcelium
+    │   ├── sim
+    │   ├── telemetry
     │   └── wt
     ├── FrequenceMetre.hw
     ├── FrequenceMetre.ip_user_files
     ├── FrequenceMetre.sim
+    │   └── sim_1
+    │       └── behav
+    │           └── xsim
+    │               └── xsim.dir
+    │                   ├── display_mux_tb_behav
+    │                   └── xil_defaultlib
     └── FrequenceMetre.srcs
         ├── sim_1
         │   └── new
@@ -82,7 +90,7 @@ Frequencemetre-E4ESIC-
             │       └── ui
             └── new
 
-22 directories
+30 directories
 ```
 <!-- Tree End -->
 
