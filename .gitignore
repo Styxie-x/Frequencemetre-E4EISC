@@ -1,0 +1,145 @@
+# ==============================================================================
+# .gitignore personnalisé pour ton environnement EISC / Projets C & Élec
+# ==============================================================================
+
+# --- Build Directories (Récursif pour tous tes sous-projets CMake/VFS/TDs) ---
+build/
+bin/
+obj/
+**/build/
+**/bin/
+**/obj/
+
+# --- PlatformIO (Spécifique à S1/Projet_Python_C/Prog_Arduino/) ---
+.pio/
+**/.pio/
+
+# --- IDEs & Outils de dev ---
+.vscode/
+**/.vscode/
+.idea/
+**/.idea/
+*CMakeLists.txt.user
+
+# --- C / CMake Build System (Garantit de bloquer les fichiers générés) ---
+CMakeCache.txt
+**/CMakeCache.txt
+CMakeFiles/
+**/CMakeFiles/
+CMakeScripts/
+**/CMakeScripts/
+Testing/
+**/Testing/
+_deps/
+**/_deps/
+cmake_install.cmake
+**/cmake_install.cmake
+install_manifest.txt
+**/install_manifest.txt
+compile_commands.json
+**/compile_commands.json
+CTestTestfile.cmake
+**/CTestTestfile.cmake
+
+# --- Binaires Compilés, Librairies & Temporaires ---
+*.o
+*.a
+*.so
+*.out
+*.exe
+tmp/
+**/tmp/
+
+# --- Java / Python / Jupyter ---
+target/
+**/target/
+*.class
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+**/.pytest_cache/
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+.venv/
+venv/
+**/.venv/
+**/venv/
+
+# --- LTSpice junk & Simulation Outputs (Garde tes .asc et bloque les résidus) ---
+# Bloque les fichiers lourds ou inutiles de simulation dans LtspiceBUp, S1 et S2
+*.log
+*.raw
+*.op.raw
+*.net
+*.fft
+# Note: On conserve les .plt (ta configuration d'affichage des courbes) et les .asc (schémas)
+
+# --- LaTeX Temporary Files (Pour tes TP et Comptes-Rendus dans S1/) ---
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.out
+*.bbl
+*.blg
+*.dvi
+*.blg
+*.bcf
+*.run.xml
+
+# --- Système & Divers ---
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+# --- Xilinx Vivado / FPGA ---
+# Keep the Vivado project file, VHDL/Verilog sources, constraints, IP
+# configuration (.xci), block designs (.bd), and project Tcl scripts tracked.
+# The directories and files below are generated locally and can be recreated
+# from the tracked project and sources.
+**/.Xil/
+**/.cache/
+**/.gen/
+**/.hw/
+**/.ip_user_files/
+**/.runs/
+**/.sim/
+**/hw_ila_data/
+**/*.cache/
+**/*.gen/
+**/*.hw/
+**/*.ip_user_files/
+**/*.runs/
+**/*.sim/
+
+# Vivado-generated metadata and logs
+*.jou
+*.str
+*.pb
+*.xpe
+
+# Generated implementation products and reports
+*.bit
+*.bin
+*.mcs
+*.mmi
+*.ltx
+*.dcp
+*.rpt
+*.ckpt
+*.hwdef
+*.ipdef
+
+# Generated simulation and synthesis output
+*.vcd
+*.vpd
+*.svo
+*.srp
+*.srf
+*.xsim
