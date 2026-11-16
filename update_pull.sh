@@ -27,7 +27,7 @@ if [[ -n "$(git status --porcelain)" ]]; then
     STASH_MESSAGE="update_pull: sauvegarde avant rebase de $BRANCH"
     echo "Sauvegarde des modifications locales (y compris les fichiers non suivis)..."
     git stash push --include-untracked --message "$STASH_MESSAGE" >/dev/null
-    STASH_REF="$(git rev-parse refs/stash)"
+    STASH_REF="stash@{0}"
 fi
 
 restore_stash() {
