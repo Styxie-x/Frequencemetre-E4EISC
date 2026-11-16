@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="bcd_counter_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="bcd_counter_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="1.509619966400 s"></ZoomStartTime>
+      <ZoomEndTime time="9.621876246401 s"></ZoomEndTime>
+      <Cursor1Time time="3.024559392183 s"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="181"></NameColumnWidth>
+      <ValueColumnWidth column_width="68"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="12" />
+   <wvobject type="logic" fp_name="/bcd_counter_tb/freqin">
+      <obj_property name="ElementShortName">freqin</obj_property>
+      <obj_property name="ObjectShortName">freqin</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/bcd_counter_tb/bcd_unit">
+      <obj_property name="ElementShortName">bcd_unit[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_unit[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/bcd_counter_tb/bcd_ten">
+      <obj_property name="ElementShortName">bcd_ten[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_ten[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/bcd_counter_tb/bcd_hundred">
+      <obj_property name="ElementShortName">bcd_hundred[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_hundred[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/bcd_counter_tb/bcd_thousand">
+      <obj_property name="ElementShortName">bcd_thousand[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_thousand[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/bcd_counter_tb/bcd_ten_thousand">
+      <obj_property name="ElementShortName">bcd_ten_thousand[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_ten_thousand[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/bcd_counter_tb/bcd_hundred_thousand">
+      <obj_property name="ElementShortName">bcd_hundred_thousand[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_hundred_thousand[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/bcd_counter_tb/bcd_million">
+      <obj_property name="ElementShortName">bcd_million[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_million[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/bcd_counter_tb/bcd_ten_million">
+      <obj_property name="ElementShortName">bcd_ten_million[3:0]</obj_property>
+      <obj_property name="ObjectShortName">bcd_ten_million[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/bcd_counter_tb/meas_window">
+      <obj_property name="ElementShortName">meas_window</obj_property>
+      <obj_property name="ObjectShortName">meas_window</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/bcd_counter_tb/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/bcd_counter_tb/half_period">
+      <obj_property name="ElementShortName">half_period</obj_property>
+      <obj_property name="ObjectShortName">half_period</obj_property>
+   </wvobject>
+</wave_config>
