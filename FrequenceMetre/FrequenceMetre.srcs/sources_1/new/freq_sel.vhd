@@ -12,12 +12,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity freq_sel is
---  Port ( );
+  Port ( 
+    my_freq : in interger;
+    N : out integer);
 end freq_sel;
 
 architecture Behavioral of freq_sel is
 
 begin
-
+    N<=interger(100000000/my_freq);
 
 end Behavioral;
