@@ -79,6 +79,7 @@ Frequencemetre-E4ESIC-
     │       └── behav
     │           └── xsim
     │               └── xsim.dir
+    │                   ├── data_latch_tb_behav
     │                   ├── display_mux_tb_behav
     │                   └── xil_defaultlib
     └── FrequenceMetre.srcs
@@ -90,7 +91,7 @@ Frequencemetre-E4ESIC-
             │       └── ui
             └── new
 
-30 directories
+31 directories
 ```
 <!-- Tree End -->
 
