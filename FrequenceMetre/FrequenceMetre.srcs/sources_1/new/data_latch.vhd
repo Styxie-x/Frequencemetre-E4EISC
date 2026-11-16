@@ -11,7 +11,6 @@ entity data_latch is
 end data_latch;
 
 architecture Behavioral of data_latch is
-    signal Q1, Q2 : std_logic;
 begin
     process (latch)
         begin
