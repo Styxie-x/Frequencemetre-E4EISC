@@ -20,14 +20,14 @@ begin
     begin
         if reset = '1' then
             counter <= 0;
-        elsif rising_edge(clk) then
-            if enable = '1' then
+        elsif rising_edge(clk) and enable = '1' then
+            
                 if counter < 9 then
                     counter <= counter + 1;
                 else
                     counter <= 0;
                 end if;
-            end if;
+            
         end if;
     end process;
 

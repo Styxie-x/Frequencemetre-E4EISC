@@ -10,13 +10,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1.509619966400 s"></ZoomStartTime>
-      <ZoomEndTime time="9.621876246401 s"></ZoomEndTime>
-      <Cursor1Time time="3.024559392183 s"></Cursor1Time>
+      <ZoomStartTime time="0.000000000000 s"></ZoomStartTime>
+      <ZoomEndTime time="5.000001000001 s"></ZoomEndTime>
+      <Cursor1Time time="5.000001000000 s"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="181"></NameColumnWidth>
-      <ValueColumnWidth column_width="68"></ValueColumnWidth>
+      <ValueColumnWidth column_width="64"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="12" />
    <wvobject type="logic" fp_name="/bcd_counter_tb/freqin">

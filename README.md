@@ -1,62 +1,75 @@
-# FrequenceMetre
-#  Fréquencemètre Numérique sur FPGA (Nexys A7-100T)
+# Fréquencemètre Numérique sur FPGA (Nexys A7-100T)
 
-Conception et implémentation en **VHDL** d'un fréquencemètre numérique sur la carte de développement **Digilent Nexys A7-100T** (Xilinx Artix-7), réalisé sous **Vivado**.
+Conception et implémentation en **VHDL** d'un fréquencemètre numérique multi-chiffres sur la carte de développement **Digilent Nexys A7-100T** (Xilinx Artix-7), réalisé sous **Vivado**.
 
 ---
 
 ## Objectif du projet
-Mesurer la fréquence $f_e$ d'un signal logique externe $V_e$ en comptant le nombre $N$ de périodes d'une horloge de référence $f_h$ pendant l'état haut (demi-période) du signal d'entrée :
-
-$$f_e = \frac{f_h}{2N}$$
-
-Le systeme intègre un sélecteur de calibre (manuel et/ou automatique) et affiche le résultat en temps réel sur les afficheurs 7 segments de la carte Nexys A7-100T.
-
----
-
-##Architecture matérielle (Blocs VHDL)
-
-Le système est découpé en modules hiérarchiques interconnectés dans un fichier `Top_Level` :
-
-1. **Générateurs d'horloges de référence (`clock_dividers`)** : Division de l'horloge système 100 MHz de la Nexys A7 en 4 calibres ($F_1 = 50\text{ MHz}$, $F_2 = 5\text{ MHz}$, $F_3 = 500\text{ kHz}$, $F_4 = 50\text{ kHz}$).
-2. **Sélecteur de fréquence (`freq_selector`)** : Multiplexeur 4 vers 1 permettant de choisir la fréquence de référence $f_h$ (mode manuel via interrupteurs `SW` ou mode automatique).
-3. **Logique de comptage et fenêtre de mesure (`fenetres`)** : Synchronisation du signal d'entrée $f_e$ et génération séquentielle des commandes `reset_compteur`, `enable_compteur` et `latch_compteur`.
-4. **Compteur BCD 4 chiffres (`compteurN`)** : Compteur décimal synchrone de `0000` à `9999` (Unités, Dizaines, Centaines, Milliers).
-5. **Mémorisation & Affichage (`latch_data` + `binaire_7seg` + multiplexeur d'anodes)** : Verrouillage de la mesure stable en fin de fenêtre, transcodage BCD vers 7 segments et balayage temporel des afficheurs de la Nexys A7.
+Mesurer en temps réel la fréquence d'un signal d'entrée (`freqin`) et afficher le résultat sur les **8 afficheurs 7 segments** de la carte Nexys A7-100T :
+1. **Comptage BCD synchrone** sur 8 décades (`00000000` à `99999999`) pendant une fenêtre de mesure calibrée.
+2. **Mémorisation (`data_latch`)** des chiffres en fin de fenêtre pour garantir un affichage stable sans scintillement.
+3. **Multiplexage temporel (`display_mux` + `bcd_to_7seg`)** pour piloter les 8 anodes et les 7 cathodes de la carte.
 
 ---
 
-## Spécifications techniques & Plages de mesure
+## État d'avancement & Répartition
 
-* **Carte cible** : Digilent Nexys A7-100T (`xc7a100tcsg324-1`)
-* **Outil de synthèse / simulation** : Xilinx Vivado
-* **Plage de comptage $N$** : `0` à `9999`
-* **Plage globale mesurable** : $2,5\text{ Hz}$ à $25\text{ MHz}$
+### Fait et validé (Code + Testbench + Waveform) — *Styxie-x*
+* **`bcd0to9_counter.vhd` & `bcd_counter.vhd`** : Compteur BCD synchrone 8 chiffres en cascade (`unit` $\rightarrow$ `ten_million`), validé de `5 Hz` à `50 MHz` (`bcd_counter_tb`).
+* **`data_latch.vhd`** : Registre de verrouillage des données BCD en fin de fenêtre de mesure (`data_latch_tb`).
+* **`display_mux.vhd`** : Multiplexeur de balayage des 8 afficheurs 7 segments (`display_mux_tb`).
+* **`bcd_to_7seg.vhd`** : Transcodeur BCD (4 bits) vers cathodes 7 segments (logique active à l'état bas).
 
-| Calibre | Fréquence de réf. ($f_h$) | Fréquence Min ($f_e$) | Fréquence Max ($f_e$) | Résolution théorique |
-| :--- | :--- | :--- | :--- | :--- |
-| **F1** | $50\text{ MHz}$ | $2\,500\text{ Hz}$ | $25\text{ MHz}$ | $2\,500\text{ Hz}$ |
-| **F2** | $5\text{ MHz}$ | $250\text{ Hz}$ | $2,5\text{ MHz}$ | $250\text{ Hz}$ |
-| **F3** | $500\text{ kHz}$ | $25\text{ Hz}$ | $250\text{ kHz}$ | $25\text{ Hz}$ |
-| **F4** | $50\text{ kHz}$ | $2,5\text{ Hz}$ | $25\text{ kHz}$ | $2,5\text{ Hz}$ |
+### Codé, en attente de vérification — *ethangirard-hue*
+* **`clk_div.vhd`** : Diviseur de l'horloge système `100 MHz` (génération des horloges de référence / balayage).
+* **`freq_sel.vhd`** : Sélecteur de calibre / fenêtre de mesure.
 
 ---
 
-## Structure du dépôt
+## Feuille de route (Dans l'ordre d'exécution)
+
+1. **Vérification des modules d'horloge et de sélection (*ethangirard-hue*)**
+   * [ ] Relire et vérifier la syntaxe/logique de `clk_div.vhd` et `freq_sel.vhd`.
+   * [ ] Créer les bancs de test (`clk_div_tb.vhd` et `freq_sel_tb.vhd`).
+   * [ ] Lancer les simulations sous Vivado et valider les chronogrammes (**Waveforms**).
+2. **Logique de fenêtre de mesure (`meas_window.vhd`)**
+   * [ ] Finaliser le séquencement des signaux `meas_window` (`gate`), `latch` et `reset` (`clear`).
+   * [ ] Simuler et valider le chronogramme de cycle complet (comptage $\rightarrow$ capture $\rightarrow$ remise à zéro).
+3. **Assemblage global (`top_frequency_meter.vhd`)**
+   * [ ] Interconnecter l'ensemble des blocs (`clk_div`, `freq_sel`, `meas_window`, `bcd_counter`, `data_latch`, `display_mux`, `bcd_to_7seg`).
+   * [ ] Écrire un testbench global (`top_frequency_meter_tb.vhd`) et valider la chaîne complète en simulation.
+4. **Implémentation matérielle sur Nexys A7-100T**
+   * [ ] Configurer le fichier de contraintes `.xdc` (horloge `100 MHz`, broche d'entrée `freqin`, interrupteurs `SW`, anodes `AN[7:0]` et cathodes `CA..CG`).
+   * [ ] Lancer la **Synthèse**, l'**Implémentation** et la génération du **Bitstream**, puis tester sur la carte physique.
+
+---
+
+## Architecture matérielle (Blocs VHDL)
 
 ```text
-├── src/                    # Fichiers sources VHDL (.vhd)
-│   ├── clock_div.vhd       # Génération de F1, F2, F3, F4 à partir de 100 MHz
-│   ├── fenetres.vhd        # Logique de fenêtre de mesure (reset, enable, latch)
-│   ├── compteurN.vhd       # Compteur BCD 0 à 9999
-│   ├── latch_data.vhd      # Registre de mémorisation 4 bits
-│   ├── aff_7seg.vhd        # Transcodeur BCD -> 7 segments + multiplexage anodes
-│   └── top_frequencemetre.vhd # Assemblage structurel
-├── tb/                     # Bancs de test (Testbenches) Vivado
-├── constraints/            # Fichier de contraintes Nexys-A7-100T-Master.xdc
-└── docs/                   # Schémas blocs, chronogrammes et Compte Rendu
+freqin ───────► ┌───────────────┐     ┌────────────┐     ┌─────────────┐     ┌─────────────┐
+                │  bcd_counter  ├────►│ data_latch ├────►│ display_mux ├────►│ bcd_to_7seg ├──► CA..CG
+meas_window ──► │  (8 digits)   │     └──────▲─────┘     └──────┬──────┘     └─────────────┘
+reset ────────► └───────────────┘            │                  └────────────────────────────► AN[7:0]
+                                             │
+clk_100MHz ───► ┌─────────┐   ┌──────────┐   │
+                │ clk_div ├──►│ freq_sel ├───┴──► meas_window (gate / latch / reset)
+                └─────────┘   └──────────┘
+```
 
-# Tree
+---
+
+## Spécifications techniques
+
+* **Carte cible** : Digilent Nexys A7-100T (`xc7a100tcsg324-1`)
+* **Horloge système** : `100 MHz`
+* **Outil de synthèse & simulation** : Xilinx Vivado
+* **Affichage** : 8 afficheurs 7 segments multiplexés (capacité jusqu'à `99 999 999 Hz`)
+
+---
+
+## Arborescence du dépôt
+
 <!-- Tree Start -->
 ```bash
 Frequencemetre-E4ESIC-
@@ -95,7 +108,3 @@ Frequencemetre-E4ESIC-
 32 directories
 ```
 <!-- Tree End -->
-
-
-My readme test
-
