@@ -1,43 +1,58 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 11/15/2026 09:48:39 AM
--- Design Name: 
--- Module Name: tb_display_mux - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
-
 library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.Std_logic_1164.all;
+use IEEE.Numeric_Std.all;
 
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
+entity display_mux_tb is
+end;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
+architecture bench of display_mux_tb is
 
-entity tb_display_mux is
---  Port ( );
-end tb_display_mux;
+  component display_mux
+      Port ( 
+          Unit,Ten,Hundred,Thousand : in std_logic_vector(7 downto 0);
+          O : out std_logic_vector(7 downto 0);
+          Sel : out std_logic_vector(3 downto 0);
+          clk : in std_logic
+      );
+  end component;
 
-architecture Behavioral of tb_display_mux is
+  signal Unit,Ten,Hundred,Thousand: std_logic_vector(7 downto 0);
+  signal O: std_logic_vector(7 downto 0);
+  signal Sel: std_logic_vector(3 downto 0);
+  signal clk: std_logic ;
+
+  constant clock_period: time := 10 ns;
+  signal stop_the_clock: boolean;
 
 begin
 
+  uut: display_mux port map ( Unit     => Unit,
+                              Ten      => Ten,
+                              Hundred  => Hundred,
+                              Thousand => Thousand,
+                              O        => O,
+                              Sel      => Sel,
+                              clk      => clk );
 
-end Behavioral;
+  stimulus: process
+  begin
+
+    -- Put initialisation code here
+
+
+    -- Put test bench stimulus code here
+
+    stop_the_clock <= true;
+    wait;
+  end process;
+
+  clocking: process
+  begin
+    while not stop_the_clock loop
+      clk <= '0', '1' after clock_period / 2;
+      wait for clock_period;
+    end loop;
+    wait;
+  end process;
+
+end;
