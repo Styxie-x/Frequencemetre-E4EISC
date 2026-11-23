@@ -34,6 +34,7 @@ Mesurer en temps réel la fréquence d'un signal d'entrée (`freqin`) et affiche
    * [ ] Lancer les simulations sous Vivado et valider les chronogrammes (**Waveforms**).
 2. **Logique de fenêtre de mesure (`meas_window.vhd`)**
    * [ ] Finaliser le séquencement des signaux `meas_window` (`gate`), `latch` et `reset` (`clear`).
+	meas_window est de 1s, il faut faire un front montant et etat haut pendant 1 sec sur meas_window. il faut aussi generer un horloge de 1Hz.
    * [ ] Simuler et valider le chronogramme de cycle complet (comptage $\rightarrow$ capture $\rightarrow$ remise à zéro).
 3. **Assemblage global (`top_frequency_meter.vhd`)**
    * [ ] Interconnecter l'ensemble des blocs (`clk_div`, `freq_sel`, `meas_window`, `bcd_counter`, `data_latch`, `display_mux`, `bcd_to_7seg`).
@@ -93,8 +94,12 @@ Frequencemetre-E4ESIC-
     │           └── xsim
     │               └── xsim.dir
     │                   ├── bcd_counter_tb_behav
+    │                   ├── clk_div_tb_behav
     │                   ├── data_latch_tb_behav
     │                   ├── display_mux_tb_behav
+    │                   ├── freq_sel_tb_behav
+    │                   ├── meas_window_tb_behav
+    │                   ├── top_frequency_meter_tb_behav
     │                   └── xil_defaultlib
     └── FrequenceMetre.srcs
         ├── sim_1
@@ -105,6 +110,6 @@ Frequencemetre-E4ESIC-
             │       └── ui
             └── new
 
-32 directories
+36 directories
 ```
 <!-- Tree End -->

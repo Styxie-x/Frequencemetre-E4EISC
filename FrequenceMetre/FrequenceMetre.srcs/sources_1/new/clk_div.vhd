@@ -11,15 +11,19 @@ entity clk_div is
 end clk_div;
 
 architecture Behavioral of clk_div is
-    signal n : integer :=0;
+    signal counter : integer := 0;
 begin
 process(clock)
 begin
     if rising_edge(clock) then
-        n <= n + 1;
-        if n = N then
+        if N <= 1 then
+            counter <= 0;
+            O <= '1';
+        elsif counter = N - 1 then
+            counter <= 0;
             O <= '1';
         else
+            counter <= counter + 1;
             O <= '0';
         end if;
     end if;
