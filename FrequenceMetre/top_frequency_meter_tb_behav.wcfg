@@ -10,13 +10,35 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
-      <ZoomEndTime time="187.644611776 ms"></ZoomEndTime>
-      <Cursor1Time time="142.415070000 ms"></Cursor1Time>
+      <ZoomStartTime time="409.585950000 ms"></ZoomStartTime>
+      <ZoomEndTime time="492.117630001 ms"></ZoomEndTime>
+      <Cursor1Time time="478.362350000 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="180"></NameColumnWidth>
+      <NameColumnWidth column_width="176"></NameColumnWidth>
       <ValueColumnWidth column_width="61"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="0" />
+   <WVObjectSize size="5" />
+   <wvobject type="logic" fp_name="/top_frequency_meter_tb/clk100mhz">
+      <obj_property name="ElementShortName">clk100mhz</obj_property>
+      <obj_property name="ObjectShortName">clk100mhz</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_frequency_meter_tb/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/top_frequency_meter_tb/freqin">
+      <obj_property name="ElementShortName">freqin</obj_property>
+      <obj_property name="ObjectShortName">freqin</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_frequency_meter_tb/SEG">
+      <obj_property name="ElementShortName">SEG[7:0]</obj_property>
+      <obj_property name="ObjectShortName">SEG[7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/top_frequency_meter_tb/AN">
+      <obj_property name="ElementShortName">AN[7:0]</obj_property>
+      <obj_property name="ObjectShortName">AN[7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
 </wave_config>
