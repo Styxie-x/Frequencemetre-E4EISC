@@ -7,7 +7,7 @@ end meas_window_tb;
 architecture bench of meas_window_tb is
 
   component meas_window
-    generic(window_cycles : integer := 100000000);
+    generic(window_cycles : integer := 20);
     port(
       clock_100mhz : in std_logic;
       reset : in std_logic;
